@@ -115,11 +115,19 @@ createToggleButton("No Spread", 200, "NoSpread")
 createToggleButton("Fast Shoot", 250, "FastShoot")
 
 -- Minimize Button Click
+local minimizedHeight = 40 -- Just the title bar
+local fullHeight = 300     -- Full panel height
+
 MinimizeButton.MouseButton1Click:Connect(function()
     contentVisible = not contentVisible
+
+    -- Toggle visibility of buttons
     for _, btn in ipairs(buttons) do
         btn.Visible = contentVisible
     end
+
+    -- Resize the Frame
+    Frame.Size = UDim2.new(0, 250, 0, contentVisible and fullHeight or minimizedHeight)
 end)
 
 -- Close Button
